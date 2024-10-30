@@ -1,0 +1,14 @@
+[ DEVELOPMENT ]
+
+-( INITIALIZE PROJECT )     
+
+--> using the gltfjsx package to make development simpler
+    --> PROBLEM: solving the following error
+        Uncaught Error: Could not load /tarot-scene.glb: JSON.parse: unexpected character at line 1 column 1 of the JSON data
+    --> SOLUTION: the glb file was not being referenced properly - it was in the same folder as the jsx component BUT useGLTF('/tarot-scene.glb') is going to look in the public folder
+
+-( USING GLTFJSX TO LOAD THE SCENE )
+
+--> adding the volumetric fog to the floor
+    --> PROBLEM: i have no idea how to do it
+    --> SOLUTION: 
