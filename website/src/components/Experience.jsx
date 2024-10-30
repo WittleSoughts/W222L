@@ -1,9 +1,13 @@
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, useProgress } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber';
 import { TarotScene } from './models/TarotScene.jsx'
-import InfinitePlane from './models/InfinitePlane.jsx'
 
-export default function Experience() {
+export default function Experience( { hideLoader } ) {
+    const { progress } = useProgress()
+    if ( progress === 100 ) {
+        hideLoader()
+    }
+
     useFrame( ( { camera } ) => {
         camera.lookAt( 0, 0.5904769648619101, 0 )
     } )
@@ -15,6 +19,5 @@ export default function Experience() {
         <ambientLight intensity={ 0.5 } />
 
         <TarotScene/>
-        <InfinitePlane/>
     </>
 }
