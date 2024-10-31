@@ -1,21 +1,28 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Canvas } from '@react-three/fiber'
 import LoadingScreen from './components/LoadingScreen'
 import Experience from './components/Experience'
 
 export default function App() {
-    const [ isIntroScene, setIsIntroScreen ] = useState( true )
+    const [ isIntroScreen, setIsIntroScreen ] = useState( true )
+    const [ showLoadingScreen, setShowLoadingScreen ] = useState( true )
+    const [ showIntroAnimation, setShowIntroAnimation ] = useState( false )
 
-    const hideLoader = () => {
+    useEffect( () => {
+
+    }, [] )
+
+    const hideLoadingScreen = () => {
         setTimeout( () => {
-            console.log( '[+] SCENE LOADED::' )
-            
-            setIsIntroScreen( false )
-        }, 3000 )
+            setShowLoadingScreen( false )
+        }, 2000 )
+    }
+    const introAnimation = () => {
+        hideLoadingScreen()
     }
 
     return <>
-        { isIntroScene && <LoadingScreen/> }
+        { isIntroScreen && <LoadingScreen fadeAway={ showLoadingScreen } isLoadingScreen={ setIsIntroScreen } showIntroAnimation={ showIntroAnimation } /> }
 
         <Canvas
             camera={ {
@@ -26,7 +33,7 @@ export default function App() {
                 ]
             } }
         >
-            <Experience hideLoader={ hideLoader } />
+            <Experience introAnimation={ introAnimation } />
         </Canvas>
     </>
 }

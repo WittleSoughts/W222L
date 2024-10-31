@@ -1,11 +1,11 @@
 import { OrbitControls, useProgress } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber'
 import { TarotScene } from './models/TarotScene.jsx'
 
-export default function Experience( { hideLoader } ) {
+export default function Experience( { introAnimation } ) {
     const { progress } = useProgress()
     if ( progress === 100 ) {
-        hideLoader()
+        introAnimation()
     }
 
     useFrame( ( { camera } ) => {
