@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
 export default function SydneyAvatar( props ) {
+  const [ currentAction, setCurrentAction ] = useState( 'intro' )
+
   const group = React.useRef()
   const { scene, animations } = useGLTF( '/models/SydneyAvatar.glb' )
   const clone = React.useMemo( () => SkeletonUtils.clone( scene ), [ scene ] )
   const { nodes, materials } = useGraph( clone )
   const { actions } = useAnimations( animations, group )
 
-  console.log( actions )
+  useEffect( () => {
+    if ( actions[ currentAction ] ) {
+      actions[ currentAction ].reset().fadeIn( 0.5 ).play()
+    }
+
+    return () => actions[ currentAction ]?.fadeOut( 0.5 )
+  }, [ currentAction, actions ] )
+
   return (
     <group ref={ group } { ...props } dispose={ null }>
       <group name="Scene">
