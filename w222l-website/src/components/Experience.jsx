@@ -5,7 +5,7 @@ import TarotScene from './models/TarotScene.jsx'
 import TarotCard from './models/TarotCard.jsx'
 import SydneyAvatar from './models/SydneyAvatar.jsx'
 
-export default function Experience({ toggleIndicators }) {
+export default function Experience() {
     const [ avatarAnimationState, setAvatarAnimationState ] = useState( 'idle' )
 
     useFrame( ( { camera } ) => {
@@ -17,7 +17,6 @@ export default function Experience({ toggleIndicators }) {
         if ( progress === 100 ) {
             setTimeout( () => {
                 setAvatarAnimationState( 'intro' )
-                toggleIndicators( 'click' )
             }, 1000 )
         }
     }, [ progress ] )
