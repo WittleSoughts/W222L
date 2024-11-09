@@ -1,9 +1,10 @@
+import * as THREE from 'three'
 import React, { useState, useEffect } from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
-export default function SydneyAvatar( props ) {
+export default function SydneyAvatar( { animationState, ...props } ) {
   const [ currentAction, setCurrentAction ] = useState( 'intro' )
 
   const group = React.useRef()
@@ -14,11 +15,16 @@ export default function SydneyAvatar( props ) {
 
   useEffect( () => {
     if ( actions[ currentAction ] ) {
-      actions[ currentAction ].reset().fadeIn( 0.5 ).play()
+      switch ( animationState ) {
+        case 'intro':
+          actions[ currentAction ].reset().fadeIn( 0.5 ).setLoop( THREE.LoopOnce ).play().clampWhenFinished = true
+        default:
+          break;
+      }
     }
 
     return () => actions[ currentAction ]?.fadeOut( 0.5 )
-  }, [ currentAction, actions ] )
+  }, [ currentAction, actions, animationState ] )
 
   return (
     <group ref={ group } { ...props } dispose={ null }>
