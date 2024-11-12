@@ -10,23 +10,23 @@ export default function TarotCard( props ) {
   const { nodes, materials, animations } = useGLTF( '/models/TarotCard.glb' )
   const { actions } = useAnimations( animations, group )
 
-  useEffect( () => {
-    materials.BASE.emissive = new THREE.Color(0xED5C9B)
+  // useEffect( () => {
+  //   materials.BASE.emissive = new THREE.Color(0xED5C9B)
 
-    emissiveAnimation.current = gsap.to(materials.BASE, {
-      emissiveIntensity: 5,
-      duration: 0.5,
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-    })
+  //   emissiveAnimation.current = gsap.to(materials.BASE, {
+  //     emissiveIntensity: 5,
+  //     duration: 0.5,
+  //     repeat: -1,
+  //     yoyo: true,
+  //     ease: "sine.inOut",
+  //   })
 
-    return () => {
-      if (emissiveAnimation.current) {
-        emissiveAnimation.current.kill();
-      }
-    }
-  } )
+  //   return () => {
+  //     if (emissiveAnimation.current) {
+  //       emissiveAnimation.current.kill();
+  //     }
+  //   }
+  // } )
 
   return (
     <group ref={ group } { ...props } dispose={ null }>
