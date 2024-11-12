@@ -14,7 +14,7 @@ export default function TarorCardModel({ animationState, cardClickAnimation, ...
 
   useEffect( () => {
     if ( cardClickAnimation ) {
-      materials.BASE.emissive = new THREE.Color(0xED5C9B)
+      materials.BASE.emissive = new THREE.Color(0xb3b3b3)
 
       emissiveAnimation.current = gsap.to(materials.BASE, {
         emissiveIntensity: 5,
