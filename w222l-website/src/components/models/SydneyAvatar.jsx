@@ -18,8 +18,18 @@ export default function SydneyAvatar( { animationState, ...props } ) {
       switch ( animationState ) {
         case 'intro':
           actions[ currentAction ].reset().fadeIn( 0.5 ).setLoop( THREE.LoopOnce ).play().clampWhenFinished = true
+          break
+        case 'intro-reverse':
+          actions[currentAction].fadeOut(0.5)
+
+          setTimeout(() => {
+            actions[currentAction].time = actions[currentAction].duration
+            actions[currentAction].setEffectiveTimeScale(-1) 
+            actions[currentAction].play() 
+          }, 500)
+          break
         default:
-          break;
+          break
       }
     }
 

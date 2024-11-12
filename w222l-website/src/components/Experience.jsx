@@ -2,10 +2,15 @@ import { useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useProgress } from '@react-three/drei'
 import TarotScene from './models/TarotScene.jsx'
-import TarotCard from './models/TarotCard.jsx'
+import TarorCardModel from './models/TarotCardModel.jsx'
 import SydneyAvatar from './models/SydneyAvatar.jsx'
 
-export default function Experience({ experiencedLoaded, avatarAnimationState }) {
+export default function Experience({ 
+    experiencedLoaded, 
+    avatarAnimationState, 
+    cardAnimationState,
+    cardClickAnimation 
+}) {
     useFrame( ( { camera } ) => {
         camera.lookAt( 0, 0.6, 0 )
     } )
@@ -22,7 +27,7 @@ export default function Experience({ experiencedLoaded, avatarAnimationState }) 
         <ambientLight intensity={ 0.5 } />
 
         <TarotScene/>
-        <TarotCard/>
-        <SydneyAvatar animationState={ avatarAnimationState }/>
+        <TarorCardModel animationState={ cardAnimationState } cardClickAnimation={ cardClickAnimation } />
+        <SydneyAvatar animationState={ avatarAnimationState } />
     </>
 }
