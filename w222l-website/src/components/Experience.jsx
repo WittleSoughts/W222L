@@ -1,13 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useProgress } from '@react-three/drei'
 import TarotScene from './models/TarotScene.jsx'
 import TarotCard from './models/TarotCard.jsx'
 import SydneyAvatar from './models/SydneyAvatar.jsx'
 
-export default function Experience() {
-    const [ avatarAnimationState, setAvatarAnimationState ] = useState( 'idle' )
-
+export default function Experience({ experiencedLoaded, avatarAnimationState }) {
     useFrame( ( { camera } ) => {
         camera.lookAt( 0, 0.6, 0 )
     } )
@@ -15,9 +13,7 @@ export default function Experience() {
     const { progress } = useProgress()
     useEffect( () => {
         if ( progress === 100 ) {
-            setTimeout( () => {
-                setAvatarAnimationState( 'intro' )
-            }, 1000 )
+            experiencedLoaded()
         }
     }, [ progress ] )
 
