@@ -3,7 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { useProgress } from '@react-three/drei'
 import TarotScene from './models/TarotScene.jsx'
 import TarorCardModel from './models/TarotCardModel.jsx'
-import SydneyAvatar from './models/sydney-avatar/SydneyAvatar.jsx'
+import SydneyAvatar from './models//SydneyAvatar.jsx'
 
 export default function Experience({ 
     experiencedLoaded,  
