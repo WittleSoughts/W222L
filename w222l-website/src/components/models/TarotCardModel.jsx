@@ -9,7 +9,7 @@ export default function TarorCardModel({ animationState, cardClickAnimation, ...
 
   const group = useRef()
   const emissiveAnimation = useRef( null )
-  const { nodes, materials, animations } = useGLTF( '/models/TarotCard.glb' )
+  const { nodes, materials, animations } = useGLTF( '/models/TarotCard-transformed.glb' )
   const { actions } = useAnimations( animations, group )
 
   useEffect( () => {
@@ -66,4 +66,4 @@ export default function TarorCardModel({ animationState, cardClickAnimation, ...
   )
 }
 
-useGLTF.preload( '/models/TarotCard.glb' )
+useGLTF.preload( '/models/TarotCard-transformed.glb' )

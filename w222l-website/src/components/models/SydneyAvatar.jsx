@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
@@ -8,12 +8,12 @@ export default function SydneyAvatar( { animationState, ...props } ) {
   const [ currentAction, setCurrentAction ] = useState( 'intro' )
 
   const group = React.useRef()
-  const { scene, animations } = useGLTF( '/models/SydneyAvatar.glb' )
+  const { scene, animations } = useGLTF( '/models/SydneyAvatar-transformed.glb' )
   const clone = React.useMemo( () => SkeletonUtils.clone( scene ), [ scene ] )
   const { nodes, materials } = useGraph( clone )
   const { actions } = useAnimations( animations, group )
 
-  useEffect( () => {
+  useEffect( () => {  
     if ( actions[ currentAction ] ) {
       switch ( animationState ) {
         case 'intro':
@@ -21,20 +21,20 @@ export default function SydneyAvatar( { animationState, ...props } ) {
           break
         case 'intro-reverse':
           actions[currentAction].fadeOut(0.5)
-
-          setTimeout(() => {
-            actions[currentAction].time = actions[currentAction].duration
-            actions[currentAction].setEffectiveTimeScale(-1) 
-            actions[currentAction].play() 
-          }, 500)
-          break
-        default:
-          break
-      }
+  
+        setTimeout(() => {
+          actions[currentAction].time = actions[currentAction].duration
+          actions[currentAction].setEffectiveTimeScale(-1) 
+          actions[currentAction].play() 
+        }, 500)
+        break
+      default:
+        break
+    }
     }
 
     return () => actions[ currentAction ]?.fadeOut( 0.5 )
-  }, [ currentAction, actions, animationState ] )
+  }, [ animationState ] )
 
   return (
     <group ref={ group } { ...props } dispose={ null }>
@@ -54,4 +54,4 @@ export default function SydneyAvatar( { animationState, ...props } ) {
   )
 }
 
-useGLTF.preload( '/models/SydneyAvatar.glb' )
+useGLTF.preload( '/models/SydneyAvatar-transformed.glb' )

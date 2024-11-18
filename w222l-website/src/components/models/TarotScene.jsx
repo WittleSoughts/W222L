@@ -2,7 +2,7 @@ import React from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export default function TarotScene( props ) {
-  const { nodes, materials } = useGLTF( '/models/TarotScene.glb' )
+  const { nodes, materials } = useGLTF( '/models/TarotScene-transformed.glb' )
   return (
     <group { ...props } dispose={ null }>
       <mesh name="floor-table" geometry={ nodes[ 'floor-table' ].geometry } material={ materials.BASE } />
@@ -10,4 +10,4 @@ export default function TarotScene( props ) {
   )
 }
 
-useGLTF.preload( '/models/TarotScene.glb' )
+useGLTF.preload( '/models/TarotScene-transformed.glb' )

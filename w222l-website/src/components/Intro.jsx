@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
-import '../styles/intro.css'
 
 export default function Intro({ hideIntro, hideIntroText, isExperienceLoaded }) {
     const [ showIntroText, setShowIntroText ] = useState( true )
@@ -33,11 +32,11 @@ export default function Intro({ hideIntro, hideIntroText, isExperienceLoaded }) 
     }, [ hideIntroText ] )
 
     return <>
-        { showIntroScreen && <div ref={ introScreen } className='intro-screen'></div> }
+        { showIntroScreen && <div ref={ introScreen } className='fixed top-0 left-0 w-full h-full bg-white z-[10]'></div> }
 
         { showIntroText && 
-            <div className="intro-banner-container">
-                <div ref={ introBanner } className="intro-banner-content">
+            <div className="fixed top-0 left-0 flex items-center justify-center w-full h-[30%] font-sofia z-[10]">
+                <div ref={ introBanner } className="opacity-0 text-[#454545]">
                     why are you here?
                 </div>
             </div> 
